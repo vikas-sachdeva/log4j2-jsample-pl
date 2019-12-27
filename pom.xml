@@ -41,6 +41,7 @@
     <module>rolling-file-appender-regex-conversion-xml</module>
     <module>rolling-file-appender-xml</module>
     <module>system-property-lookup-xml</module>
+    <module>threshold-filter-json</module>
   </modules>
 
 </project>
