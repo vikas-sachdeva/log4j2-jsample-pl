@@ -37,6 +37,7 @@
     <module>json-layout-key-value-pair-xml</module>
     <module>json-layout-xml</module>
     <module>rolling-file-appender-programmatic</module>
+    <module>rolling-file-appender-properties</module>
   </modules>
 
 </project>
