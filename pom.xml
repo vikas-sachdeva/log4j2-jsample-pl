@@ -35,6 +35,7 @@
         <module>async-appender-properties</module>
         <module>async-appender-xml</module>
     <module>json-layout-key-value-pair-xml</module>
+    <module>json-layout-xml</module>
   </modules>
 
 </project>
