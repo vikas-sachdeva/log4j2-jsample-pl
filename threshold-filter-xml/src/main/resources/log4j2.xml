@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Configuration>
+
+<Configuration status="warn" name="xml_configuration">
+
+	<Properties>
+		<Property name="basePath">./log/</Property>
+	</Properties>
+
+	<!-- Define Context-wide Filters -->
+	<Filters>
+		<ThresholdFilter level="WARN" onMatch="ACCEPT"
+			onMismatch="DENY" />
+	</Filters>
+
+	<!-- Below is the filter sequence in which log messages are filtered - 
+		1) Context-wide filters 
+		2) Level declared at logger level 
+		3) Appender filter 
+		
+		If level is becoming specific (e.g. from INFO to WARN) in lower sequences, 
+		log messages are filtered again. If level is becoming generic (e.g. from 
+		WARN to INFO) in lower sequences, level set at higher sequence is used. -->
+
+	<Appenders>
+		<!-- Specify log file path and old log file naming convention. -->
+		<RollingFile name="fileAppender"
+			fileName="${basePath}app.log"
+			filePattern="${basePath}app_%d{yyyyMMdd}.log.gz">
+
+			<!-- Define appender specific filter -->
+			<ThresholdFilter level="ERROR" onMatch="ACCEPT"
+				onMismatch="DENY" />
+
+			<!-- Specify the format of the log file content -->
+			<PatternLayout
+				pattern="%d{yyyy-MM-dd HH:mm:ss.SSS}	%level [%t] [%c] [%M] [%l] - %msg%n" />
+
+			<Policies>
+				<!-- Specify when to rotate log file -->
+				<!-- internal="1" means rotate log file daily -->
+				<TimeBasedTriggeringPolicy interval="1"
+					modulate="true" />
+			</Policies>
+
+			<!-- Specify how many log files to keep -->
+			<DefaultRolloverStrategy>
+				<Delete basePath="${basePath}" maxDepth="1">
+					<!-- age="2d" means delete log files which are modified before 2 days -->
+					<IfLastModified age="2d" />
+				</Delete>
+			</DefaultRolloverStrategy>
+		</RollingFile>
+
+		<!-- Write the logs in console -->
+		<Console name="consoleAppender" target="SYSTEM_OUT">
+			<!-- Specify the format of the logs -->
+			<PatternLayout
+				pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} %level [%t] [%c] [%M] [%l] - %msg%n" />
+		</Console>
+	</Appenders>
+
+	<Loggers>
+		<Logger name="log4j2.jsample" level="info" additivity="false">
+			<appender-ref ref="fileAppender" />
+			<appender-ref ref="consoleAppender" />
+		</Logger>
+		<Root level="error" additivity="false">
+			<appender-ref ref="consoleAppender" />
+			<appender-ref ref="fileAppender" />
+		</Root>
+	</Loggers>
+</Configuration>
