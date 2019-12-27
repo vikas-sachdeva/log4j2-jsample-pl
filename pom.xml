@@ -38,6 +38,7 @@
     <module>json-layout-xml</module>
     <module>rolling-file-appender-programmatic</module>
     <module>rolling-file-appender-properties</module>
+    <module>rolling-file-appender-regex-conversion-xml</module>
   </modules>
 
 </project>
