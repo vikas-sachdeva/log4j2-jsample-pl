@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Configuration>
+
+<Configuration status="warn" name="xml_configuration">
+
+    <Properties>
+        <Property name="basePath">./log/</Property>
+    </Properties>
+
+    <Appenders>
+        <!-- Specify log file path and old log file naming convention. -->
+        <RollingFile name="fileAppender"
+                     fileName="${basePath}app.log"
+                     filePattern="${basePath}app_%d{yyyyMMdd}.log.gz">
+
+            <!-- Specify the format of the log file content -->
+            <PatternLayout
+                    pattern="%d{yyyy-MM-dd HH:mm:ss.SSS}	%level [%t] [%c] [%M] [%l] - %msg%n"/>
+
+            <Policies>
+                <!-- Specify when to rotate log file -->
+                <!-- internal="1" means rotate log file daily -->
+                <TimeBasedTriggeringPolicy interval="1"
+                                           modulate="true"/>
+            </Policies>
+
+            <!-- Specify how many log files to keep -->
+            <DefaultRolloverStrategy>
+                <Delete basePath="${basePath}" maxDepth="1">
+                    <!-- age="2d" means delete log files which are modified before 2 days -->
+                    <IfLastModified age="2d"/>
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+
+        <!-- Write the logs in console -->
+        <Console name="consoleAppender" target="SYSTEM_OUT">
+            <!-- Specify the format of the logs -->
+            <PatternLayout
+                    pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} %level [%t] [%c] [%M] [%l] - %msg%n"/>
+        </Console>
+
+        <Async name="asyncAppender" bufferSize="262144">
+            <AppenderRef ref="consoleAppender"/>
+            <AppenderRef ref="fileAppender"/>
+        </Async>
+
+    </Appenders>
+
+    <Loggers>
+        <Logger name="log4j2.jsample" level="info" additivity="false">
+            <appender-ref ref="asyncAppender"/>
+        </Logger>
+        <Root level="error" additivity="false">
+            <appender-ref ref="asyncAppender"/>
+        </Root>
+    </Loggers>
+</Configuration>
