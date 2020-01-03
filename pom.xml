@@ -43,6 +43,8 @@
     <module>system-property-lookup-xml</module>
     <module>threshold-filter-json</module>
     <module>threshold-filter-xml</module>
+    <module>rolling-file-appender-json</module>
+    <module>routing-appender-xml</module>
   </modules>
 
 </project>

@@ -1,0 +1,77 @@
+{
+	"configuration": {
+		"status": "warn",
+		"name": "json_configuration",
+		"properties": {
+			"property": {
+				"name": "basePath",
+				"value": "./log/"
+			}
+		},
+		"appenders": {
+			"appender": [
+				{
+					"type": "RollingFile",
+					"name": "fileAppender",
+					"fileName": "${basePath}app.log",
+					"filePattern": "${basePath}app_%d{yyyyMMdd}.log.gz",
+					"PatternLayout": {
+						"pattern": "%d{yyyy-MM-dd HH:mm:ss.SSS} %level [%t] [%c] [%M] [%l] - %msg%n"
+					},
+					"Policies": {
+						"TimeBasedTriggeringPolicy": {
+							"interval": "1",
+							"modulate": "true"
+						}
+					},
+					"DefaultRolloverStrategy": {
+						"Delete": {
+							"basePath": "${basePath}",
+							"maxDepth": "1",
+							"IfLastModified": {
+								"age": "2d"
+							}
+						}
+					}
+				},
+				{
+					"type": "Console",
+					"name": "consoleAppender",
+					"target": "SYSTEM_OUT",
+					"PatternLayout": {
+						"pattern": "%d{yyyy-MM-dd HH:mm:ss.SSS} %level [%t] [%c] [%M] [%l] - %msg%n"
+					}
+				}
+			]
+		},
+		"loggers": {
+			"logger": [
+				{
+					"name": "log4j2.jsample",
+					"level": "info",
+					"additivity": "false",
+					"appender-ref": [
+						{
+							"ref": "fileAppender"
+						},
+						{
+							"ref": "consoleAppender"
+						}
+					]
+				}
+			],
+			"root": {
+				"level": "info",
+				"additivity": "false",
+				"appender-ref": [
+					{
+						"ref": "fileAppender"
+					},
+					{
+						"ref": "consoleAppender"
+					}
+				]
+			}
+		}
+	}
+}

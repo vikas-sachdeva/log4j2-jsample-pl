@@ -12,8 +12,7 @@
 	<artifactId>json-layout-xml</artifactId>
 
 	<dependencies>
-		<!-- Dependency of jackson library so that log4j2 can parse log4j2.json 
-			file -->
+		<!-- Dependency of jackson library so that log4j2 can parse work on JSON -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
