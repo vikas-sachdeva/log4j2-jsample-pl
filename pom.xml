@@ -45,6 +45,9 @@
     <module>threshold-filter-xml</module>
     <module>rolling-file-appender-json</module>
     <module>routing-appender-xml</module>
+    <module>size-based-rolling-file-xml</module>
+    <module>size-time-based-rolling-file-xml</module>
+    <module>size-time-based-rolling-file-properties</module>
   </modules>
 
 </project>
