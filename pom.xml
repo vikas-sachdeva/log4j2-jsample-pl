@@ -49,6 +49,7 @@
     <module>size-time-based-rolling-file-xml</module>
     <module>size-time-based-rolling-file-properties</module>
     <module>environment-variable-lookup-xml</module>
+    <module>environment-variable-lookup-json</module>
   </modules>
 
 </project>
