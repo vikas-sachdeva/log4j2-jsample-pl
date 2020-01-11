@@ -12,7 +12,7 @@
 			"appender": [
 				{
 					"type": "RollingFile",
-					"name": "fileLogger",
+					"name": "fileAppender",
 					"fileName": "${basePath}app.log",
 					"filePattern": "${basePath}app_%d{yyyyMMdd}.log.gz",
 					"PatternLayout": {
@@ -36,7 +36,7 @@
 				},
 				{
 					"type": "Console",
-					"name": "consoleLogger",
+					"name": "consoleAppender",
 					"target": "SYSTEM_OUT",
 					"PatternLayout": {
 						"pattern": "%d{yyyy-MM-dd HH:mm:ss.SSS} %level [%t] [%c] [%M] [%l] - %msg%n"
@@ -47,15 +47,15 @@
 		"loggers": {
 			"logger": [
 				{
-					"name": "log4j.jsample",
+					"name": "log4j2.jsample",
 					"level": "info",
 					"additivity": "false",
 					"appender-ref": [
 						{
-							"ref": "fileLogger"
+							"ref": "fileAppender"
 						},
 						{
-							"ref": "consoleLogger"
+							"ref": "consoleAppender"
 						}
 					]
 				}
@@ -65,10 +65,10 @@
 				"additivity": "false",
 				"appender-ref": [
 					{
-						"ref": "fileLogger"
+						"ref": "fileAppender"
 					},
 					{
-						"ref": "consoleLogger"
+						"ref": "consoleAppender"
 					}
 				]
 			}
