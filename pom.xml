@@ -53,6 +53,8 @@
     <module>if-accumulated-file-size-properties</module>
     <module>if-any-delete-action-properties</module>
     <module>regex-filter-xml</module>
+    <module>jul-integration-xml</module>
+    <module>apache-camel-integration</module>
   </modules>
 
 </project>
