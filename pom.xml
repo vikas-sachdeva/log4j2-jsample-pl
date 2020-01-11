@@ -51,6 +51,8 @@
     <module>environment-variable-lookup-xml</module>
     <module>environment-variable-lookup-json</module>
     <module>if-accumulated-file-size-properties</module>
+    <module>if-any-delete-action-properties</module>
+    <module>regex-filter-xml</module>
   </modules>
 
 </project>
